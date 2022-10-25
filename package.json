@@ -1,0 +1,43 @@
+{
+  "name": "blddb-search",
+  "version": "1.0.0",
+  "description": "blddb-search",
+  "homepage": "https://search.blddb.net",
+  "main": "dist/data.json",
+  "scripts": {
+    "start": "npm run build",
+    "build": "node scripts/build.mjs",
+    "dash": "npm run build && node scripts/dash.mjs"
+  },
+  "files": [
+    "command",
+    "dist"
+  ],
+  "keywords": [
+    "blddb",
+    "search"
+  ],
+  "author": "nbwzx <nbwzx@126.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nbwzx/blddb-search.git"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.5",
+    "@uiw/github-corners": "~1.5.11",
+    "@wcj/dark-mode": "~1.0.14",
+    "colors-cli": "~1.0.28",
+    "compressing": "^1.6.2",
+    "ejs": "~3.1.6",
+    "fs-extra": "~10.1.0",
+    "markdown-to-html-cli": "~3.5.0",
+    "sitemap-generator": "~8.5.1",
+    "sqlite3": "5.0.8",
+    "stylus": "~0.59.0",
+    "uglify-js": "~3.17.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

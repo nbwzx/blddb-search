@@ -1,0 +1,37 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+
+    - name: Generate Contributors Images
+      uses: jaywcjlove/github-action-contributors@main
+      with:
+        filter-author: (renovate\[bot\]|renovate-bot|dependabot\[bot\])
+        avatarSize: 42
+
+    - name: Build blddb-search
+      run: |
+        npm install
+        npm run dash
+        cp CONTRIBUTORS.svg .deploy
+        cp CNAME .deploy
+        rm -rf .deploy/blddb-search.docset
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        commit_message: '${{ github.event.head_commit.message }}'
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./.deploy
+        user_name: github-actions[bot]
+        user_email: github-actions[bot]@users.noreply.github.com
